@@ -8,28 +8,42 @@
     <title>Blackjack</title>
 </head>
 
-<body>
+<body id="container">
 
     <div class="board">
 
+        <img class="logo" src="Bilder/blackjack.png" alt="Logo">
+
+        <div class="dealer">
+            <img class="card" src="kortstokk/8_of_clubs.png">
+            <img class="card" src="kortstokk/1_of_spades2.png">
+        </div>
+
         <div class="player">
-            <img class="card" src="kortstokk/10_of_clubs.png" alt="kort">
-            <img class="card" src="kortstokk/backside.png" alt="kort">
+            <img class="card" src="kortstokk/13_of_clubs.png" alt="kort">
+            <img class="card" id="player-card" src="kortstokk/1_of_hearts.png" alt="kort">
         </div>
 
         <div class="bet">
-            <img id="hit" src="Bilder/hit.png">
-            <img id="stand" src="Bilder/stand.png">
-            <img id="double-down" src="Bilder/doubleDown.png">
-            <img id="split" src="Bilder/split.png">
+            <img class="zoom" id="hit" src="Bilder/hit.png">
+            <img class="zoom" id="stand" src="Bilder/stand.png">
+            <img class="zoom" id="double-down" src="Bilder/doubleDown.png">
+            <img class="zoom" id="split" src="Bilder/split.png">
+
+            <h6>HIT</h6>
+            <h6>STAND</h6>
+            <h6>DOUBLE DOWN</h6>
+            <h6>SPLIT</h6>
         </div>
 
         <div class="balance">
             <div>
                 <h1>Total:</h1>
+                <h2>X</h2>
             </div>
             <div>
                 <h1>Bet:</h1>
+                <h2>Y</h2>
             </div>
         </div>
 
