@@ -12,6 +12,10 @@ body {
     /* overflow: hidden; */
 }
 
+#body-forside {
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(Bilder/frontPageCarpet.jpg);
+}
+
 .board {
     height: 100vh;
     display: grid;
@@ -183,7 +187,6 @@ body {
     border-color: black;
     background-color: #873333;
     width: 100%;
-
 }
 
 .ruleslist h1 {
@@ -192,8 +195,9 @@ body {
 }
 
 .ruleslist h3 {
-    margin-top: 15px;
-    text-align: center;
+    font-size: 16px;
+    margin: 15px 10px 0 15px;
+    text-align: left;
     background-color: #873333;
     color: white;
 }
@@ -201,7 +205,7 @@ body {
 
 /* Forside */
 .frontpage {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 230px);
     display: flex;
     justify-content: center;
 }
@@ -218,11 +222,12 @@ body {
 .start-button {
     width: 400px;
     height: 100px;
-    border: 4px;
+    border: 6px;
     border-style: solid;
-    border-radius: 20px;
+    border-radius: 50px;
     border-color: black;
-    background-color: #873333;
+    /* background-color: #2f612f; */
+    background-color: #295229;
     font-size: 4em;
     color:white ;
 
