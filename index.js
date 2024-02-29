@@ -3,7 +3,7 @@ function tilfeldigkort() {
     const tall = Math.floor(Math.random()* 13) + 1
     
     
-    const kortElm = document.querySelector(".container img")
+    const kortElm = document.querySelector(".card")
     
     
     kortElm.src = "kortstokk/" + tall + "_of_clubs.png"
