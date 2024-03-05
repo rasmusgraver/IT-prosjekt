@@ -81,6 +81,12 @@ body {
 }
 
 
+.bet button {
+    background-color: transparent; 
+    border: none; 
+}
+
+
 #hit {
     height: 70px;
 }
