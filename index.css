@@ -1,19 +1,19 @@
 * {
-    margin: 0; 
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-image: linear-gradient(rgba(0,150,0,0.3),rgba(0,150,0,0.3)), url(Bilder/Board.jpg);
+    background-image: linear-gradient(rgba(0, 150, 0, 0.3), rgba(0, 150, 0, 0.3)), url(Bilder/Board.jpg);
     /* background-image: linear-gradient(rgba(0,100,0,0.4),rgba(0,100,0,0.4)), url(Bilder/Board.jpg); */
-    
+
     background-size: cover;
     /* overflow: hidden; */
 }
 
 #body-forside {
-    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(Bilder/frontPageCarpet.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(Bilder/frontPageCarpet.jpg);
 }
 
 .board {
@@ -98,12 +98,13 @@ body {
 }
 
 .zoom {
-    transition: transform .2s; /* Animation */
+    transition: transform .2s;
+    /* Animation */
     cursor: pointer;
-  }
-  
+}
+
 .zoom:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
     opacity: 0.9;
 }
 
@@ -145,7 +146,7 @@ body {
     border-color: black;
     background-color: #873333;
     width: 100%;
-    
+
     display: grid;
     grid-template-rows: 2fr 3fr 3fr 3fr 3fr 1fr;
 
@@ -204,38 +205,39 @@ body {
 
 .hamburger-menu {
     position: relative;
-  }
-  
-  .menu-icon {
+}
+
+.menu-icon {
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
     margin: 10px;
-  }
-  
-  .ruleslist {
+}
+
+.ruleslist {
     display: none;
     position: absolute;
-    top: 40px; /* Adjust as needed */
+    top: 40px;
+    /* Adjust as needed */
     left: 0;
     background-color: #873333;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-  }
-  
-  .ruleslist h1 {
+}
+
+.ruleslist h1 {
     text-align: center;
     color: white;
-  }
-  
-  .ruleslist h3 {
+}
+
+.ruleslist h3 {
     font-size: 16px;
     color: white;
     margin: 10px 0;
-  }
+}
 
 
 /* Forside */
@@ -244,6 +246,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .frontpage-img {
     height: 600px;
 }
@@ -264,7 +267,7 @@ body {
     /* background-color: #2f612f; */
     background-color: #295229;
     font-size: 4em;
-    color:white ;
+    color: white;
 
 }
 
