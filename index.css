@@ -176,7 +176,7 @@ body {
 
 /* Ruleslist */
 
-.ruleslist {
+/* .ruleslist {
     margin-top: 60px;
     grid-column: 1/2;
     grid-row: 3/6;
@@ -200,7 +200,42 @@ body {
     text-align: left;
     background-color: #873333;
     color: white;
-}
+} */
+
+.hamburger-menu {
+    position: relative;
+  }
+  
+  .menu-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .ruleslist {
+    display: none;
+    position: absolute;
+    top: 40px; /* Adjust as needed */
+    left: 0;
+    background-color: #873333;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  
+  .ruleslist h1 {
+    text-align: center;
+    color: white;
+  }
+  
+  .ruleslist h3 {
+    font-size: 16px;
+    color: white;
+    margin: 10px 0;
+  }
 
 
 /* Forside */

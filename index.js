@@ -18,4 +18,9 @@ function tilfeldigkort() {
     
     }
     setInterval(tilfeldigkort, 1000)
-    
+
+
+function toggleMenu() {
+    const rulesList = document.querySelector('.ruleslist');
+    rulesList.style.display = (rulesList.style.display === 'none') ? 'block' : 'none';
+    }
