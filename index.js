@@ -114,8 +114,6 @@ function determineWinner() {
 
 
 
-setInterval(tilfeldigkort, 1000)
-
 
 function toggleMenu() {
     const rulesList = document.querySelector('.ruleslist');
