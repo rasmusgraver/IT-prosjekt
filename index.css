@@ -82,8 +82,8 @@ body {
 
 
 .bet button {
-    background-color: transparent; 
-    border: none; 
+    background-color: transparent;
+    border: none;
 }
 
 
@@ -211,28 +211,46 @@ body {
 } */
 
 .hamburger-menu {
-    position: relative;
+    position: fixed;
+    top: 200px;
+    left: 0;
+    bottom: 200px;
 }
 
 .menu-icon {
-    background: none;
-    border: none;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: -50px;
+    background-color: #873333;
+    width: 50px;
+    padding: 5px 0 5px 0;
+    border-style: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     font-size: 24px;
     cursor: pointer;
-    margin: 10px;
+    z-index: 1000;
 }
 
 .ruleslist {
     display: none;
-    position: absolute;
-    top: 40px;
-    /* Adjust as needed */
+    position: fixed;
+    top: 200px;
     left: 0;
+    bottom: 200px;
+    width: 200px;
     background-color: #873333;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 15px;
+
+    border: solid;
+    border-left: none;
+    border-width: 6px;
+    border-color: black;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 999;
 }
 
 .ruleslist h1 {

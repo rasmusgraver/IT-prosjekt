@@ -117,5 +117,10 @@ function determineWinner() {
 
 function toggleMenu() {
     const rulesList = document.querySelector('.ruleslist');
-    rulesList.style.display = (rulesList.style.display === 'none') ? 'block' : 'none';
+    const menuIcon = document.querySelector('.menu-icon');
+    if (rulesList.style.display === 'none') {
+        rulesList.style.display = 'block';
+    } else {
+        rulesList.style.display = 'none';
+    }
 }
