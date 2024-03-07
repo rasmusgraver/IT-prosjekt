@@ -65,6 +65,21 @@ dealInitialCards();
 //     }
 // }
 
+
+//function cardValue(card, currentTotal) {
+//    switch (card.value) {
+//        case 'A':
+//             If adding 11 would cause a bust, count Ace as 1
+//            return currentTotal + 11 > 21 ? 1 : 11;
+//        case 'K':
+//        case 'Q':
+//        case 'J':
+//            return 10;
+//        default:
+//            return parseInt(card.value);
+//    }
+// }
+
 // function cardValue(card, currentTotal) {
 //     switch (card.value) {
 //         case 'A':
@@ -78,6 +93,7 @@ dealInitialCards();
 //             return parseInt(card.value);
 //     }
 // }
+
 
 // function shuffle(deck) {
 //     for (let i = deck.length - 1; i > 0; i--) {
