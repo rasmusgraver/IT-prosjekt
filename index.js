@@ -14,7 +14,7 @@ for (let suit of suits) {
 function cardValue(card, currentTotal) {
     switch (card.value) {
         case 'A':
-            // If adding 11 would cause a bust, count Ace as 1
+             If adding 11 would cause a bust, count Ace as 1
             return currentTotal + 11 > 21 ? 1 : 11;
         case 'K':
         case 'Q':
