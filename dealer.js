@@ -36,7 +36,7 @@ function dealInitialCards() {
     // Deal cards to dealer
     dealerHand.forEach((card, index) => {
         const dealerCardElement = document.createElement('img');
-        dealerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
+        dealerCardElement.src = index === 1 ? 'kortstokk/backside.png' : `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
         dealerCardElement.classList.add('card', 'dealer');
         document.querySelector('.dealer').appendChild(dealerCardElement);
     });
