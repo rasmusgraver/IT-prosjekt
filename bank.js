@@ -2,4 +2,7 @@
 
 
 
-function placeBet10()
+function placeBet10(){
+    document.getElementById("bet")
+    
+}
