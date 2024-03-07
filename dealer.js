@@ -1,9 +1,63 @@
 
 
-const suits = ['Hjerter', 'Ruter', 'Kløver', 'Spar'];
-const values = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+const ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 
-let deck = [];
+// Function to create a standard deck of cards
+function createDeck() {
+    const deck = [];
+    for (let suit of suits) {
+        for (let rank of ranks) {
+            deck.push({ suit, rank });
+        }
+    }
+    return deck;
+}
+
+// Function to shuffle the deck of cards
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    return deck;
+}
+
+// Function to deal a card from the deck
+function dealCard(deck) {
+    return deck.pop();
+}
+
+// Function to deal cards to player and dealer
+function dealInitialCards() {
+    const playerHand = [dealCard(deck), dealCard(deck)];
+    const dealerHand = [dealCard(deck), dealCard(deck)];
+
+    // Deal cards to dealer
+    dealerHand.forEach((card, index) => {
+        const dealerCardElement = document.createElement('img');
+        dealerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
+        dealerCardElement.classList.add('card', 'dealer');
+        document.querySelector('.dealer').appendChild(dealerCardElement);
+    });
+
+    // Deal cards to player
+    playerHand.forEach((card, index) => {
+        const playerCardElement = document.createElement('img');
+        playerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
+        playerCardElement.classList.add('card');
+        document.querySelector('.player').appendChild(playerCardElement);
+    });
+
+    console.log('Player hand:', playerHand);
+    console.log('Dealer hand:', dealerHand);
+}
+
+// Shuffle and create deck
+let deck = shuffleDeck(createDeck());
+
+// Call dealInitialCards function to deal cards when needed, such as when the game starts
+dealInitialCards();
 
 // for (let suit of suits) {
 //     for (let value of values) {

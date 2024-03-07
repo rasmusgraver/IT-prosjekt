@@ -4,95 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="icon" href="Bilder/blackjack.png">
-    <title>Single Hand Blackjack</title>
-
 </head>
 
-<body>
+<body id="body-forside">
 
-    <div class="board">
-
-        <!-- Logo -->
-        <img class="logo" src="Bilder/bjLogo.webp" alt="Logo">
-
-        <!-- Cards -->
-        <div class="dealer">
-            <img class="card" src="kortstokk/8_of_clubs.png">
-            <img class="card" src="kortstokk/1_of_spades.png">
-        </div>
-
-        <div class="player">
-            <img class="card" src="kortstokk/13_of_clubs.png" alt="kort">
-            <img class="card" id="player-card" src="kortstokk/1_of_hearts.png" alt="kort">
-        </div>
-
-
-        <!-- Bet knapper -->
-        <div class="bet">
-            <button onclick="hit()"><img class="zoom" id="hit" src="Bilder/hit.png"></button>
-            <button onclick="stand()"><img class="zoom" id="stand" src="Bilder/stand.png"></button>
-            <button onclick="doubleDown()"><img class="zoom" id="double-down" src="Bilder/doubleDown.png"></button>
-            <button onclick="split()"><img class="zoom" id="split" src="Bilder/split.png"></button>
-
-            <h6>HIT</h6>
-            <h6>STAND</h6>
-            <h6>DOUBLE DOWN</h6>
-            <h6>SPLIT</h6>
-        </div>
-
-
-        <!-- Balance -->
-        <div class="balance">
-            <div>
-                <h1>BALANCE</h1>
-                <h2>X</h2>
-            </div>
-            <div>
-                <h1>BET</h1>
-                <h2>Y</h2>
-            </div>
-        </div>
-
-
-        <!-- Chips -->
-
-        <div class="chiplist">
-
-            <h1>Chips</h1>
-
-            <img class="chips zoom" id="chip10" src="Bilder/10chip.png" alt="10chip">
-
-            <img class="chips zoom" id="chip50" src="Bilder/50chip.png" alt="50chip">
-
-            <img class="chips zoom" id="chip100" src="Bilder/100chip.png" alt="100chip">
-
-            <img class="chips zoom" id="chip500" src="Bilder/500chip.png" alt="500chip">
-
-        </div>
-
-        <!--Regler-->
-
-        <div class="hamburger-menu">
-            <button class="menu-icon" onclick="toggleMenu()">&#9776;</button>
-            <ul class="ruleslist">
-                <h1>Regler</h1>
-                <li> <h3>Dealeren trekker kort først til deg og så til seg selv</h3> </li>
-                <li> <h3>Du kan velge å stå (stand) med kortene dine eller å trekke et nytt (hit) for hver hånd</h3> </li>
-                <li> <h3>Målet med spillet er å få så stor hånd som mulig uten å komme over 21</h3> </li>
-                <li> <h3>Du vinner ved å få en større hånd enn dealeren</h3> </li>
-                <li> <h3>Alle bildekort og 10 er verdt 10, mens ess kan både være 1 eller 11</h3> </li>
-                <li> <h3>Bildekort/10 + ess blir 21, som er blackjack og gir 3/2 gevinst</h3> </li>
-                <li> <h3>Du kan dobble innsatsen din når som helst</h3> </li>
-                <li> <h3>Får du to like kort kan du dele de i to hender (split) </h3> </li>
-            </ul>
-          </div>
-
-    </div>
+    <div class="frontpage">
+        <img class="frontpage-img" src="Bilder/bjLogo.webp" alt="Logo">
     </div>
 
-    <script src="index.js"></script>
+    <div class="div-start-button">
+        <a href="blackjack.html"> <button class="start-button zoom">Start Game</button> </a>
+    </div>
+
 </body>
 
 </html>
