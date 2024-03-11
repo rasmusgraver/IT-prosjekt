@@ -50,7 +50,7 @@ updateBalance();
 
 
 
-function gameOutcome() {
+function gameOutcome(gameWon) {
     if (gameWon) {
         balance += bet*2
     }
