@@ -54,6 +54,7 @@ updateBalance();
 function gameOutcome(gameWon) {
     if (gameWon) {
         balance += bet*2
+        bet = bet*0
     }
 }
 
@@ -61,6 +62,7 @@ function gameOutcome(gameWon) {
 function gameOutcome(gameLoss){
     if (gameLoss) {
         balance += bet*0
+        bet = bet*0
     }
 }
 
@@ -68,6 +70,7 @@ function gameOutcome(gameLoss){
 function gameOutcome(gamePush){
     if (gamePush) {
         balance += bet*1
+        bet = bet*0
     }
 }
 
@@ -75,5 +78,6 @@ function gameOutcome(gamePush){
 function gameOutcome(gameBlackJack){
     if (gameBlackJack) {
         balance += bet*1.5
+        bet = bet*0
     }
 }
