@@ -46,3 +46,13 @@ document.getElementById('chip500').addEventListener('click', function() {
 
 // Call updateBalance initially
 updateBalance();
+
+
+
+
+function gameOutcome() {
+    if (gameWon) {
+        balance += bet*2
+    }
+    
+}
