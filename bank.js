@@ -54,8 +54,16 @@ function gameOutcome(gameWon) {
     if (gameWon) {
         balance += bet*2
     }
-    else{
+}
+
+function gameOutcome(gameLoss){
+    if (gameLoss) {
         balance += bet*0
     }
-    
+}
+
+function gameOutcome(gamePush){
+    if (gamePush){
+        balance += bet*1
+    }
 }
