@@ -60,12 +60,28 @@ body {
 }
 
 .player {
-    grid-column: 3/5;
+    grid-column: 3/4;
     grid-row: 5/7;
     margin-bottom: 40px;
+    position: relative;
+    display: flex; /* Set the player's hand container to flex */
+    align-items: center; /* Align cards vertically */
 }
 
+.player .card {
+    margin-left: -90px; /* Adjust the margin to overlap with previous cards */
+    z-index: 2; /* Set a higher z-index for the card */
+}
 
+/* Ensure the first card doesn't overlap */
+.player .card:first-child {
+    margin-left: 0;
+}
+
+/* Ensure subsequent cards overlap properly */
+.player .card:not(:first-child) {
+    margin-left: -45px; /* Adjust the margin to overlap with previous cards */
+}
 
 /* Bets */
 
@@ -131,7 +147,7 @@ body {
     border-width: 6px;
     border-radius: 20px;
     border-style: solid;
-    border-color: #873333;
+    border-color: #a52727;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -144,7 +160,7 @@ body {
 }
 
 .balance h1 {
-    background-color: #873333;
+    background-color: #a52727;
     padding: 10px 0 10px 0;
 }
 
@@ -168,7 +184,7 @@ body {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     border-color: black;
-    background-color: #873333;
+    background-color: #a52727;
     width: 100%;
 
     display: grid;
@@ -215,7 +231,7 @@ body {
     position: absolute;
     top: 10px;
     right: -50px;
-    background-color: #873333;
+    background-color: #a52727;
     width: 50px;
     padding: 5px 0 5px 0;
     border-style: none;
@@ -233,7 +249,7 @@ body {
     left: 0;
     bottom: 150px;
     width: 300px;
-    background-color: #873333;
+    background-color: #a52727;
     padding: 15px;
 
     border: solid;
