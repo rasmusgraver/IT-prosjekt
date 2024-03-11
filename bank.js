@@ -49,21 +49,31 @@ updateBalance();
 
 
 
-
+//Gir ut penger, ut i fra hvordan runden gikk
+//Hvis spiller vinner
 function gameOutcome(gameWon) {
     if (gameWon) {
         balance += bet*2
     }
 }
 
+//Hvis spiller taper 
 function gameOutcome(gameLoss){
     if (gameLoss) {
         balance += bet*0
     }
 }
 
+//Hvis spiller og dealer har likt
 function gameOutcome(gamePush){
-    if (gamePush){
+    if (gamePush) {
         balance += bet*1
+    }
+}
+
+//Hvis spiller får BlackJack, gis det ut 1.5 ganger hva man la inn
+function gameOutcome(gameBlackJack){
+    if (gameBlackJack) {
+        balance += bet*1.5
     }
 }
