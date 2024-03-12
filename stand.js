@@ -1,7 +1,7 @@
 
 const dealerCardEls = document.querySelectorAll(".card.dealer")
 
-console.log(dealerCardEl)
+
 
 function stand(){
     
