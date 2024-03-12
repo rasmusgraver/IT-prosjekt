@@ -1,19 +1,25 @@
 
-
 const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-const ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+const ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13'];
+const values = ['1','2','3','4','5','6','7','8','9','10','10','10','10','11']; // Modified values array to assign 10 to Jack, Queen, and King
 
-// Function to create a standard deck of cards
 function createDeck() {
     const deck = [];
     for (let suit of suits) {
         for (let rank of ranks) {
-            deck.push({ suit, rank });
+            let value;
+            if (rank === '11' || rank === '12' || rank === '13') {
+                value = 10; // Assign 10 to Jack, Queen, and King
+            } else if (rank === '1') {
+                value = 11; // Assign initial value 11 to Ace
+            } else {
+                value = parseInt(rank); // Other cards have their respective value
+            }
+            deck.push({ suit, rank, value });
         }
     }
     return deck;
 }
-
 // Function to shuffle the deck of cards
 function shuffleDeck(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
@@ -51,6 +57,9 @@ function dealInitialCards() {
 
     console.log('Player hand:', playerHand);
     console.log('Dealer hand:', dealerHand);
+
+    // Calculate and check player's hand value to disable hit button if necessary
+
 }
 
 // Shuffle and create deck
@@ -60,39 +69,26 @@ let deck = shuffleDeck(createDeck());
 dealInitialCards();
 
 function hit() {
-    // Deal a new card from the deck
+    const playerCards = document.querySelectorAll('.player .card');
+    let playerHandValue = 0; // Initialize player hand value
+    playerCards.forEach(card => {
+        const cardValue = parseInt(card.dataset.value); // Use dataset.value if set
+        playerHandValue += cardValue;
+    });
+    if (playerHandValue >= 21) {
+        document.getElementById('hit').disabled = true;
+        return;
+    }
     const newCard = dealCard(deck);
-
-    // Create HTML element for the new card
     const newCardElement = document.createElement('img');
     newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`;
     newCardElement.classList.add('card');
-    newCardElement.dataset.value = newCard.rank;
-    document.querySelector('.player').appendChild(newCardElement); // Append the new card to the player's hand
-
-    // Calculate the total sum of player's cards
-    const playerCards = document.querySelectorAll('.player .card');
-    let playerHandValue = playerHand;
-    playerCards.forEach(card => {
-        const cardValue = parseInt(card.dataset.value);
-        playerHandValue += cardValue;
-    });
-
-    // If player's hand value is 21 or above, disable the hit button
+    newCardElement.dataset.value = newCard.value; // Set dataset.value to the card's value
+    document.querySelector('.player').appendChild(newCardElement);
+    console.log('New card:', newCard);
+    playerHandValue += parseInt(newCard.value); // Update player hand value with the card's value
+    checkPlayerHandValue(playerHandValue);
     if (playerHandValue >= 21) {
         document.getElementById('hit').disabled = true;
-    }
-
-    // Log the new card to console (optional)
-    console.log('New card:', newCard);
-}
-
-function toggleMenu() {
-    const rulesList = document.querySelector('.ruleslist');
-    const menuIcon = document.querySelector('.menu-icon');
-    if (rulesList.style.display === 'none') {
-        rulesList.style.display = 'block';
-    } else {
-        rulesList.style.display = 'none';
     }
 }
