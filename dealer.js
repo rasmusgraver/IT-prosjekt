@@ -1,14 +1,18 @@
 
 const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-const ranks = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11','12','13'];
-const values = ['1','2','3','4','5','6','7','8','9','10','10','10','10','11']; // Verdiene til kortene er normale, utenom 11-13
+const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]; // Verdiene til kortene er normale, utenom 11-13
+
+let playerHandValue = 0; // bestemme verdien til spillerens kort
+
+// const values = ranks.map(rank => (rank >= 11 && rank <= 13) ? 10 : rank === 1 ? [1, 11] : rank);
 
 function createDeck() {
     const deck = [];
     for (let suit of suits) {
         for (let rank of ranks) {
             let value;
-            if (rank === '11' || rank === '12' || rank === '13') {
+            if (rank == 11 || rank == 12 || rank == 13) {
                 value = 10; // Gjør om verdien til knekt(11), dronning(12) og konge(13) til 10
             } else if (rank === '1') {
                 value = 11; // Gjør verdien til ess(1,11) om til (11) som en standar
@@ -53,11 +57,13 @@ function dealInitialCards() {
         const playerCardElement = document.createElement('img');
         playerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
         playerCardElement.classList.add('card');
+        playerHandValue += parseInt(card.value);
         document.querySelector('.player').appendChild(playerCardElement);
     });
 
     console.log('Player hand:', playerHand);
     console.log('Dealer hand:', dealerHand);
+    console.log('Player Hand Value', playerHandValue);
 
     // Kalkulerer spillerns hånd, for å se om man skal skru av "hit" knappen
 
@@ -71,15 +77,10 @@ dealInitialCards();
 
 function hit() {
     const playerCards = document.querySelectorAll('.player .card');
-    let playerHandValue = 0; // bestemme verdien til spillerens kort
     playerCards.forEach(card => {
-        const cardValue = parseInt(card.dataset.value); // Use dataset.value if set
-        playerHandValue += cardValue;
+        const Value = card.dataset.value; // Use dataset.value if set
     });
-    if (playerHandValue >= 21) {
-        document.getElementById('hit').disabled = true;
-        return;
-    }
+
     const newCard = dealCard(deck);
     const newCardElement = document.createElement('img');
     newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`;
@@ -88,8 +89,21 @@ function hit() {
     document.querySelector('.player').appendChild(newCardElement);
     console.log('New card:', newCard);
     playerHandValue += parseInt(newCard.value); // oppdaterer spillerns kort til kortverdi
-    checkPlayerHandValue(playerHandValue);
-    if (playerHandValue >= 21) {
-        document.getElementById('hit').disabled = true;
+    
+    function checkPlayerHandValue(playerHandValue){
+        // playerHandValue =
+        if (playerHandValue > 21) {
+            document.getElementById('hitButton').disabled = true;
+            console.log('Bust! Player hand value exceeds 21.');
+            // Here you can add any additional actions you want to take if the player busts.
+        } else if (playerHandValue === 21) {
+            document.getElementById('hitButton').disabled = true;
+            console.log('Blackjack! Player hand value is 21.');
+            // Here you can add any additional actions you want to take if the player gets a blackjack.
+        } else {
+            console.log('Player hand value:', playerHandValue);
+            // Here you can add any additional actions you want to take if the player's hand value is within acceptable range.
+        }
     }
+    checkPlayerHandValue(playerHandValue);
 }
