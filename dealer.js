@@ -42,6 +42,8 @@ function checkPlayerHandValue(playerHandValue) {
         const para = document.createElement("p");
         para.innerHTML = "Bust! Du kom over 21";
         document.getElementById("result").appendChild(para);
+        console.log('Player hand value',playerHandValue);
+
     } else if (playerHandValue === 21) {
         document.getElementById('hitButton').disabled = true;
         console.log('Blackjack! Player hand value is 21.');
@@ -74,7 +76,7 @@ function dealInitialCards() {
 
     console.log('Player hand:', playerHand);
     console.log('Dealer hand:', dealerHand);
-    console.log('Player Hand Value', playerHandValue);
+    console.log('Player hand value', playerHandValue);
     checkPlayerHandValue(playerHandValue);
 }
 
@@ -91,5 +93,12 @@ function hit() {
     newCardElement.classList.add('card');
     document.querySelector('.player').appendChild(newCardElement);
     playerHandValue += parseInt(newCard.value);
+
+    // Check if the player's hand contains an ace and the total value exceeds 21
+
+    if (playerHandValue > 21) {
+        playerHandValue -= 10;
+    }
+
     checkPlayerHandValue(playerHandValue);
 }
