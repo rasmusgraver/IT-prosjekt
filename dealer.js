@@ -14,7 +14,7 @@ function createDeck() {
             let value;
             if (rank == 11 || rank == 12 || rank == 13) {
                 value = 10; // Gjør om verdien til knekt(11), dronning(12) og konge(13) til 10
-            } else if (rank === '1') {
+            } else if (rank == 1) {
                 value = 11; // Gjør verdien til ess(1,11) om til (11) som en standar
             } else {
                 value = parseInt(rank); //Resten av kortene har sin egen verdi
@@ -36,7 +36,24 @@ function shuffleDeck(deck) {
 
 // funksjon som gjør det mulig å dele ut kort fra bakerst i bunken
 function dealCard(deck) {
-  return deck.pop();
+    return deck.pop();
+}
+
+function checkPlayerHandValue(playerHandValue) {
+    if (playerHandValue > 21) {
+        document.getElementById('hitButton').disabled = true;
+        console.log('Bust! Player hand value exceeds 21.');
+        // Here you can add any additional actions you want to take if the player busts.
+    }
+    else if (playerHandValue == 21) {
+        document.getElementById('hitButton').disabled = true;
+        console.log('Blackjack! Player hand value is 21.');
+        // Here you can add any additional actions you want to take if the player gets a blackjack.
+    } 
+    else {
+        console.log('Player hand value:', playerHandValue);
+        // Here you can add any additional actions you want to take if the player's hand value is within acceptable range.
+    }
 }
 
 // funksjon som deler ut 2 kort til spiller og 2 kort til dealer
@@ -59,6 +76,7 @@ function dealInitialCards() {
         playerCardElement.classList.add('card');
         playerHandValue += parseInt(card.value);
         document.querySelector('.player').appendChild(playerCardElement);
+        checkPlayerHandValue(playerHandValue);
     });
 
     console.log('Player hand:', playerHand);
@@ -90,20 +108,6 @@ function hit() {
     console.log('New card:', newCard);
     playerHandValue += parseInt(newCard.value); // oppdaterer spillerns kort til kortverdi
     
-    function checkPlayerHandValue(playerHandValue){
-        // playerHandValue =
-        if (playerHandValue > 21) {
-            document.getElementById('hitButton').disabled = true;
-            console.log('Bust! Player hand value exceeds 21.');
-            // Here you can add any additional actions you want to take if the player busts.
-        } else if (playerHandValue === 21) {
-            document.getElementById('hitButton').disabled = true;
-            console.log('Blackjack! Player hand value is 21.');
-            // Here you can add any additional actions you want to take if the player gets a blackjack.
-        } else {
-            console.log('Player hand value:', playerHandValue);
-            // Here you can add any additional actions you want to take if the player's hand value is within acceptable range.
-        }
-    }
     checkPlayerHandValue(playerHandValue);
-}
+
+    }
