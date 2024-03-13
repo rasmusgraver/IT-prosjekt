@@ -43,11 +43,19 @@ function checkPlayerHandValue(playerHandValue) {
     if (playerHandValue > 21) {
         document.getElementById('hitButton').disabled = true;
         console.log('Bust! Player hand value exceeds 21.');
+        const para = document.createElement("p");
+        para.innerHTML = "Bust! Du kom over 21";
+        document.getElementById("result").appendChild(para);
+
+
         // Here you can add any additional actions you want to take if the player busts.
     }
     else if (playerHandValue == 21) {
         document.getElementById('hitButton').disabled = true;
         console.log('Blackjack! Player hand value is 21.');
+        const para = document.createElement("p");
+        para.innerHTML = "Blackjack! Du fikk 21";
+        document.getElementById("result").appendChild(para);
         // Here you can add any additional actions you want to take if the player gets a blackjack.
     } 
     else {

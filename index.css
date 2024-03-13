@@ -336,3 +336,12 @@ h6 {
     font-size: 15px;
     color: white;
 }
+
+#result{
+    grid-column: 3/5;
+    grid-row: 4/5;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 32px;
+}
