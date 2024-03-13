@@ -1,5 +1,6 @@
 let deck;
-let playerHandValue = 0; // Declare playerHandValue in global scope
+let playerHandValue = 0;
+let dealerHandValue = 0;
 
 // Declare functions and variables for deck creation, shuffling, dealing, etc.
 
@@ -42,12 +43,14 @@ function checkPlayerHandValue(playerHandValue) {
         const para = document.createElement("p");
         para.innerHTML = "Bust! Du kom over 21";
         document.getElementById("result").appendChild(para);
+
     } else if (playerHandValue === 21) {
         document.getElementById('hitButton').disabled = true;
         console.log('Blackjack! Player hand value is 21.');
         const para = document.createElement("p");
         para.innerHTML = "Blackjack! Du fikk 21";
         document.getElementById("result").appendChild(para);
+        
     } else {
         console.log('Player hand value:', playerHandValue);
     }
@@ -78,11 +81,6 @@ function dealInitialCards() {
     checkPlayerHandValue(playerHandValue);
 }
 
-// Initialize game
-function startGame() {
-    deck = shuffleDeck(createDeck());
-    dealInitialCards();
-}
 
 function hit() {
     const newCard = dealCard(deck);
@@ -92,4 +90,109 @@ function hit() {
     document.querySelector('.player').appendChild(newCardElement);
     playerHandValue += parseInt(newCard.value);
     checkPlayerHandValue(playerHandValue);
+}
+
+function stand() {
+    // Disable hit button
+    document.getElementById('hitButton').disabled = true;
+
+    // Execute dealer's turn
+    dealerPlay();
+}
+
+function dealerPlay() {
+
+    while (dealerHandValue < 17) {
+        const newCard = dealCard(deck);
+        const newCardElement = document.createElement('img');
+        newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`;
+        newCardElement.classList.add('card');
+        document.querySelector('.dealer').appendChild(newCardElement);
+        dealerHandValue += parseInt(newCard.value);
+    }
+
+    // Check the winner after the dealer has finished drawing cards
+    checkWinner();
+}
+
+function checkWinner(dealerHandValue) {
+    // Enable stand button
+    document.getElementById('standButton').disabled = true;
+
+    // Show dealer's hand value
+    console.log('Dealer hand value:', dealerHandValue);
+
+    // Check who wins
+    if (dealerHandValue > 21 || dealerHandValue < playerHandValue) {
+        console.log('Player wins!');
+        const para = document.createElement("p");
+        para.innerHTML = "Du vinner!";
+        document.getElementById("result").appendChild(para);
+    } else if (dealerHandValue > playerHandValue) {
+        console.log('Dealer wins!');
+        const para = document.createElement("p");
+        para.innerHTML = "Dealer vinner!";
+        document.getElementById("result").appendChild(para);
+    } else {
+        console.log('It\'s a tie!');
+        const para = document.createElement("p");
+        para.innerHTML = "Uavgjort!";
+        document.getElementById("result").appendChild(para);
+    }
+}
+
+// function checkdealerHandValue(dealerHandValue) {
+//     // let aceCount = 0;
+
+//     // // Loop through each card in the hand
+//     // for (let i = 0; i < hand.children.length; i++) {
+//     //     const card = hand.children[i];
+//     //     const cardValue = parseInt(card.getAttribute('data-value'));
+
+//     //     handValue += cardValue;
+
+//     //     // Check for Aces
+//     //     if (cardValue === 11) {
+//     //         aceCount++;
+//     //     }
+
+//     //     // Adjust Ace value from 11 to 1 if necessary
+//     //     while (handValue > 21 && aceCount > 0) {
+//     //         handValue -= 10;
+//     //         aceCount--;
+//     //     }
+//     // }
+
+//     // return handValue;
+//     if (dealerHandValue > playerHandValue && dealerHandValue <=21 ) {
+//         console.log("Dealer won");
+//         const para = document.createElement("p");
+//         para.innerHTML = "Dealeren vant;
+//         document.getElementById("result").appendChild(para);
+
+//     } else if (dealerHandValue < playerHandValue) {
+//         console.log('Blackjack! Player hand value is 21.');
+//         const para = document.createElement("p");
+//         para.innerHTML = "Blackjack! Du fikk 21";
+//         document.getElementById("result").appendChild(para);
+        
+//     } else {
+//         console.log('Player hand value:', playerHandValue);
+//     }
+// }
+
+
+function hideButton() {
+    let startGame = document.getElementById("startGame");
+    startGame.style.display = "none";
+}
+
+function initiateGame() {
+    deck = shuffleDeck(createDeck());
+    dealInitialCards();
+}
+
+function startGame() {
+    initiateGame(); 
+    hideButton(); 
 }
