@@ -103,6 +103,23 @@ body {
 }
 
 
+.startGame1 {
+    grid-column:3/5;
+    grid-row:1/2;
+    display: flex;
+    justify-content: center;
+}
+
+.startGame1 button {
+    background-color: transparent;
+    border: none;
+}
+
+#startGame {
+    height: 150px;
+}
+
+
 #hit {
     height: 70px;
 }
