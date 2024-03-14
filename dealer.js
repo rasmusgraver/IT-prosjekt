@@ -41,6 +41,7 @@ function dealCard(deck) {
 function checkPlayerHandValue() {
     if (playerHandValue > 21) { // Hvis verdien av spillerens hånd er over 21.
         document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
+        document.getElementById('standButton').disabled = true;
         console.log('Bust! Player hand value exceeds 21.'); // Skriver ut en melding om at spilleren har gått over 21.
         const para = document.createElement("p"); // Oppretter et nytt <p> element.
         para.innerHTML = "Bust! Du kom over 21"; // Setter teksten til meldingen.

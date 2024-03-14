@@ -1,4 +1,5 @@
 let balance = 200; // Set initial balance
+let currentBet
 
 // Function to update balance display
 function updateBalance() {
@@ -53,31 +54,31 @@ updateBalance();
 //Hvis spiller vinner
 function gameOutcome(gameWon) {
     if (gameWon) {
-        balance += bet*2
-        bet = bet*0
+        balance += currentBet*2
+        currentBet = currentBet*0
     }
 }
 
 //Hvis spiller taper 
 function gameOutcome(gameLoss){
     if (gameLoss) {
-        balance += bet*0
-        bet = bet*0
+        balance += currentBet*0
+        currentBet = currentBet*0
     }
 }
 
 //Hvis spiller og dealer har likt
 function gameOutcome(gamePush){
     if (gamePush) {
-        balance += bet*1
-        bet = bet*0
+        balance += currentBet*1
+        currentBet = currentBet*0
     }
 }
 
 //Hvis spiller får BlackJack, gis det ut 1.5 ganger hva man la inn
 function gameOutcome(gameBlackJack){
     if (gameBlackJack) {
-        balance += bet*1.5
-        bet = bet*0
+        balance += currentBet*1.5
+        currentBet = currentBet*0
     }
 }
