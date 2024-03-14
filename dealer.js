@@ -184,6 +184,10 @@ function disableHitButtonIf21() {
 function hideButton() {
     let startGame = document.getElementById("startGame"); // Henter referanse til knappen for å starte spillet.
     startGame.style.display = "none"; // Skjuler knappen ved å sette display-stilen til "none".
+    document.getElementById('chip10').disabled = true;
+    document.getElementById('chip50').disabled = true;
+    document.getElementById('chip100').disabled = true;
+    document.getElementById('chip500').disabled = true;
 }
 
 // Funksjon for å starte spillet ved å initiere kortstokken, dele ut de første kortene og skjule startknappen.

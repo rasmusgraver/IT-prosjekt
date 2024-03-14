@@ -229,6 +229,10 @@ body {
     text-align: center;
 }
 
+.chip-button {
+    
+}
+
 .chips {
     max-width: 100%;
     width: 120px;
