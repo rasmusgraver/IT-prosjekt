@@ -1,59 +1,70 @@
-let deck;
-let playerHandValue = 0;
-let dealerHandValue = 0;
+let deck; // Deklarerer en variabel "deck" som skal inneholde en kortstokk.
+let playerHandValue = 0; // Deklarerer en variabel "playerHandValue" som skal holde verdien av spillerens hånd.
+let dealerHandValue = 0; // Deklarerer en variabel "dealerHandValue" som skal holde verdien av dealerens hånd.
 
-// Declare functions and variables for deck creation, shuffling, dealing, etc.
-
+// Funksjon for å lage en kortstokk.
 function createDeck() {
-    const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-    const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-    const deck = [];
-    for (let suit of suits) {
-        for (let rank of ranks) {
-            let value;
-            if (rank >= 11 && rank <= 13) {
-                value = 10;
-            } else if (rank === 1) {
-                value = 11;
-            } else {
-                value = rank;
+    const suits = ['hearts', 'diamonds', 'clubs', 'spades']; // Array som inneholder alle mulige farger.
+    const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]; // Array som inneholder alle mulige verdier.
+    const deck = []; // Tom array som skal inneholde kortstokken.
+    for (let suit of suits) { // Går gjennom hver farge.
+        for (let rank of ranks) { // Går gjennom hver "bildeID".
+            let value; // Variabel for å holde verdien til hvert kort.
+            if (rank >= 11 && rank <= 13) { // Hvis kortet er en knekt, dame eller konge.
+                value = 10; // Setter verdien til 10.
+            } else if (rank === 1) { // Hvis kortet er et ess.
+                value = 11; // Setter verdien til 11.
+            } else { // Hvis kortet er et tallkort.
+                value = rank; // Setter verdien til kortets tallverdi.
             }
-            deck.push({ suit, rank, value });
+            deck.push({ suit, rank, value }); // Legger til kortet i kortstokken med farge, verdi og beregnet verdi.
         }
     }
-    return deck;
+    return deck; // Returnerer den opprettede kortstokken.
 }
 
+// Funksjon for å stokke kortstokken.
 function shuffleDeck(deck) {
-    for (let i = deck.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [deck[i], deck[j]] = [deck[j], deck[i]];
+    for (let i = deck.length - 1; i > 0; i--) { // Går gjennom kortstokken baklengs.
+        const j = Math.floor(Math.random() * (i + 1)); // Velger en tilfeldig indeks for bytte.
+        [deck[i], deck[j]] = [deck[j], deck[i]]; // Bytter plass på kortene.
     }
-    return deck;
+    return deck; // Returnerer den stokkede kortstokken.
 }
 
+// Funksjon for å dele ut et kort fra kortstokken.
 function dealCard(deck) {
-    return deck.pop();
+    return deck.pop(); // Fjerner og returnerer det siste kortet i kortstokken.
 }
 
-function checkPlayerHandValue(playerHandValue) {
-    if (playerHandValue > 21) {
-        document.getElementById('hitButton').disabled = true;
-        console.log('Bust! Player hand value exceeds 21.');
-        const para = document.createElement("p");
-        para.innerHTML = "Bust! Du kom over 21";
-        document.getElementById("result").appendChild(para);
+// Funksjon for å sjekke verdien av spillerens hånd.
+function checkPlayerHandValue() {
+    if (playerHandValue > 21) { // Hvis verdien av spillerens hånd er over 21.
+        document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
+        console.log('Bust! Player hand value exceeds 21.'); // Skriver ut en melding om at spilleren har gått over 21.
+        const para = document.createElement("p"); // Oppretter et nytt <p> element.
+        para.innerHTML = "Bust! Du kom over 21"; // Setter teksten til meldingen.
+        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+    } else if (playerHandValue === 21) { // Hvis verdien av spillerens hånd er 21.
+        document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
+        console.log('Blackjack! Player hand value is 21.'); // Skriver ut en melding om at spilleren har blackjack.
+        const para = document.createElement("p"); // Oppretter et nytt <p> element.
+        para.innerHTML = "Blackjack! Du fikk 21"; // Setter teksten til meldingen.
+        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+    } else { 
+        console.log('Player hand value:', playerHandValue); // Skriver ut verdien av spillerens hånd.
+    }
+}
 
-
-    } else if (playerHandValue === 21) {
-        document.getElementById('hitButton').disabled = true;
-        console.log('Blackjack! Player hand value is 21.');
-        const para = document.createElement("p");
-        para.innerHTML = "Blackjack! Du fikk 21";
-        document.getElementById("result").appendChild(para);
-        
-    } else {
-        console.log('Player hand value:', playerHandValue);
+// Funksjon for å sjekke verdien av dealerens hånd.
+function checkDealerHandValue() {
+    if (dealerHandValue > 21) { // Hvis verdien av dealerens hånd er over 21.
+        console.log('Dealer Bust! Dealer hand value exceeds 21.'); // Skriver ut en melding om at dealeren har gått over 21.
+        const para = document.createElement("p"); // Oppretter et nytt <p> element.
+        para.innerHTML = "Dealer Bust! Dealer kom over 21."; // Setter teksten til meldingen.
+        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+    } else { // Hvis dealerens hånd ikke er over 21.
+        console.log('Dealer hand value:', dealerHandValue); // Skriver ut verdien av dealerens hånd.
     }
 }
 
@@ -61,146 +72,127 @@ function dealInitialCards() {
     const playerHand = [dealCard(deck), dealCard(deck)];
     const dealerHand = [dealCard(deck)];
 
-    dealerHand.forEach((card, index) => {
-        const dealerCardElement = document.createElement('img');
-        dealerCardElement.src = index === 1 ? 'kortstokk/backside.png' : `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
-        dealerCardElement.classList.add('card', 'dealer');
-        document.querySelector('.dealer').appendChild(dealerCardElement);
+    playerHand.forEach((card) => {
+        const playerCardElement = document.createElement('img'); // Oppretter et <img> element for spillerens kort.
+        playerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`; // Setter kilden til bildet basert på kortets farge og verdi.
+        playerCardElement.classList.add('card'); // Legger til klassen "card" til spillerens kort.
+        playerHandValue += parseInt(card.value); // Legger til verdien av kortet til spillerens håndverdi.
+        document.querySelector('.player').appendChild(playerCardElement); // Legger til spillerens kort i HTML-dokumentet under "player" elementet.
     });
 
-    playerHand.forEach((card, index) => {
-        const playerCardElement = document.createElement('img');
-        playerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`;
-        playerCardElement.classList.add('card');
-        playerHandValue += parseInt(card.value);
-        document.querySelector('.player').appendChild(playerCardElement);
+    // Går gjennom hvert kort i dealerens hånd.
+    dealerHand.forEach((card) => {
+        const dealerCardElement = document.createElement('img'); // Oppretter et <img> element for dealerens kort.
+        dealerCardElement.src = `kortstokk/${card.rank}_of_${card.suit.toLowerCase()}.png`; // Setter kilden til bildet basert på kortets farge og verdi.
+        dealerCardElement.classList.add('card'); // Legger til klassen "card" til dealerens kort.
+        dealerHandValue += parseInt(card.value); // Legger til verdien av kortet til dealerens håndverdi.
+        document.querySelector('.dealer').appendChild(dealerCardElement); // Legger til dealerens kort i HTML-dokumentet under "dealer" elementet.
     });
 
+    // Skriver ut spillerens og dealerens hånd samt håndverdier.
     console.log('Player hand:', playerHand);
     console.log('Dealer hand:', dealerHand);
     console.log('Player hand value', playerHandValue);
-    checkPlayerHandValue(playerHandValue);
+    console.log('Dealer Hand Value', dealerHandValue);
+
+    // Sjekker om spilleren eller dealeren har blackjack eller har gått over 21.
+    checkPlayerHandValue();
+    checkDealerHandValue();
+
+    // Deaktiverer "hit" knappen hvis spilleren allerede har 21.
+    disableHitButtonIf21();
 }
 
-
+// Funksjon for å trekke et nytt kort for spilleren.
 function hit() {
-    const newCard = dealCard(deck);
-    const newCardElement = document.createElement('img');
-    newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`;
-    newCardElement.classList.add('card');
-    document.querySelector('.player').appendChild(newCardElement);
-    playerHandValue += parseInt(newCard.value);
+    if (playerHandValue < 21) { // Sjekker om spillerens håndverdi er mindre enn 21.
+        const newCard = dealCard(deck); // Trekker et nytt kort fra kortstokken.
+        const newCardElement = document.createElement('img'); // Oppretter et <img> element for det nye kortet.
+        newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`; // Setter kilden til bildet basert på kortets farge og verdi.
+        newCardElement.classList.add('card'); // Legger til klassen "card" til det nye kortet.
+        document.querySelector('.player').appendChild(newCardElement); // Legger til det nye kortet i HTML-dokumentet under "player" elementet.
+        playerHandValue += parseInt(newCard.value); // Legger til verdien av det nye kortet til spillerens håndverdi.
 
-    // Check if the player's hand contains an ace and the total value exceeds 21
+        // Sjekker om spillerens hånd inneholder et ess og den totale verdien overstiger 21.
+        
 
-    if (playerHandValue > 21) {
-        playerHandValue -= 10;
+        checkPlayerHandValue(); // Sjekker om spilleren har blackjack eller har gått over 21.
     }
-
-    checkPlayerHandValue(playerHandValue);
+    disableHitButtonIf21(); // Deaktiverer "hit" knappen hvis spilleren allerede har 21.
 }
-
+// Funksjon for å "stå" eller avslutte spillerens tur og starte dealerens tur.
 function stand() {
-    // Disable hit button
+    // Deaktiverer "hit" knappen.
     document.getElementById('hitButton').disabled = true;
-
-    // Execute dealer's turn
+    // Starter dealerens tur.
     dealerPlay();
 }
 
+// Funksjon som utfører dealerens tur ved å trekke kort til dealerens håndverdi er minst 17.
 function dealerPlay() {
-
-    while (dealerHandValue < 17) {
-        const newCard = dealCard(deck);
-        const newCardElement = document.createElement('img');
-        newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`;
-        newCardElement.classList.add('card');
-        document.querySelector('.dealer').appendChild(newCardElement);
-        dealerHandValue += parseInt(newCard.value);
+    while (dealerHandValue < 17) { // Så lenge dealerens håndverdi er mindre enn 17.
+        const newCard = dealCard(deck); // Trekker et nytt kort fra kortstokken.
+        const newCardElement = document.createElement('img'); // Oppretter et <img> element for det nye kortet.
+        newCardElement.src = `kortstokk/${newCard.rank}_of_${newCard.suit.toLowerCase()}.png`; // Setter kilden til bildet basert på kortets farge og verdi.
+        newCardElement.classList.add('card'); // Legger til klassen "card" til det nye kortet.
+        document.querySelector('.dealer').appendChild(newCardElement); // Legger til det nye kortet i HTML-dokumentet under "dealer" elementet.
+        dealerHandValue += parseInt(newCard.value); // Legger til verdien av det nye kortet til dealerens håndverdi.
     }
 
-    // Check the winner after the dealer has finished drawing cards
+    // Sjekker vinneren etter at dealerens tur er ferdig med å trekke kort.
     checkWinner();
 }
 
-function checkWinner(dealerHandValue) {
-    // Enable stand button
+// Funksjon for å sjekke hvem som vinner spillet og vise resultatet.
+function checkWinner() {
+    // Deaktiverer "stå" knappen.
     document.getElementById('standButton').disabled = true;
 
-    // Show dealer's hand value
+    // Viser dealerens håndverdi.
     console.log('Dealer hand value:', dealerHandValue);
 
-    // Check who wins
-    if (dealerHandValue > 21 || dealerHandValue < playerHandValue) {
-        console.log('Player wins!');
-        const para = document.createElement("p");
-        para.innerHTML = "Du vinner!";
-        document.getElementById("result").appendChild(para);
-    } else if (dealerHandValue > playerHandValue) {
-        console.log('Dealer wins!');
-        const para = document.createElement("p");
-        para.innerHTML = "Dealer vinner!";
-        document.getElementById("result").appendChild(para);
-    } else {
-        console.log('It\'s a tie!');
-        const para = document.createElement("p");
-        para.innerHTML = "Uavgjort!";
-        document.getElementById("result").appendChild(para);
+    // Sjekker hvem som vinner.
+    if (dealerHandValue > 21 || dealerHandValue < playerHandValue) { // Hvis dealerens håndverdi er over 21 eller mindre enn spillerens håndverdi.
+        console.log('Player wins!'); // Skriver ut at spilleren vinner.
+        const para = document.createElement("p"); // Oppretter et nytt <p> element.
+        para.innerHTML = "Du vinner!"; // Setter teksten til meldingen.
+        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+    } else if (dealerHandValue > playerHandValue) { // Hvis dealerens håndverdi er større enn spillerens håndverdi.
+        console.log('Dealer wins!'); // Skriver ut at dealeren vinner.
+        const para = document.createElement("p"); // Oppretter et nytt <p> element.
+        para.innerHTML = "Dealer vinner!"; // Setter teksten til meldingen.
+        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+    } else { // Hvis det er uavgjort.
+        console.log('It\'s a tie!'); // Skriver ut at det er uavgjort.
+        const para = document.createElement("p"); // Oppretter et nytt <p> element.
+        para.innerHTML = "Uavgjort!"; // Setter teksten til meldingen.
+        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
     }
 }
 
-// function checkdealerHandValue(dealerHandValue) {
-//     // let aceCount = 0;
+// Funksjon for å deaktivere "hit" knappen hvis spillerens håndverdi er 21 eller mer.
+function disableHitButtonIf21() {
+    if (playerHandValue >= 21) { // Sjekker om spillerens håndverdi er 21 eller mer.
+        document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
+    } else { // Hvis spillerens håndverdi er mindre enn 21.
+        document.getElementById('hitButton').disabled = false; // Aktiverer "hit" knappen.
+    }
+}
 
-//     // // Loop through each card in the hand
-//     // for (let i = 0; i < hand.children.length; i++) {
-//     //     const card = hand.children[i];
-//     //     const cardValue = parseInt(card.getAttribute('data-value'));
-
-//     //     handValue += cardValue;
-
-//     //     // Check for Aces
-//     //     if (cardValue === 11) {
-//     //         aceCount++;
-//     //     }
-
-//     //     // Adjust Ace value from 11 to 1 if necessary
-//     //     while (handValue > 21 && aceCount > 0) {
-//     //         handValue -= 10;
-//     //         aceCount--;
-//     //     }
-//     // }
-
-//     // return handValue;
-//     if (dealerHandValue > playerHandValue && dealerHandValue <=21 ) {
-//         console.log("Dealer won");
-//         const para = document.createElement("p");
-//         para.innerHTML = "Dealeren vant;
-//         document.getElementById("result").appendChild(para);
-
-//     } else if (dealerHandValue < playerHandValue) {
-//         console.log('Blackjack! Player hand value is 21.');
-//         const para = document.createElement("p");
-//         para.innerHTML = "Blackjack! Du fikk 21";
-//         document.getElementById("result").appendChild(para);
-        
-//     } else {
-//         console.log('Player hand value:', playerHandValue);
-//     }
-// }
-
-
+// Funksjon for å skjule knappen for å starte spillet.
 function hideButton() {
-    let startGame = document.getElementById("startGame");
-    startGame.style.display = "none";
+    let startGame = document.getElementById("startGame"); // Henter referanse til knappen for å starte spillet.
+    startGame.style.display = "none"; // Skjuler knappen ved å sette display-stilen til "none".
 }
 
+// Funksjon for å starte spillet ved å initiere kortstokken, dele ut de første kortene og skjule startknappen.
 function initiateGame() {
-    deck = shuffleDeck(createDeck());
-    dealInitialCards();
+    deck = shuffleDeck(createDeck()); // Oppretter en stokket kortstokk.
+    dealInitialCards(); // Deler ut de første kortene.
 }
 
+// Funksjon for å starte spillet.
 function startGame() {
-    initiateGame(); 
-    hideButton(); 
+    initiateGame(); // Starter spillet ved å initiere spillet.
+    hideButton(); // Skjuler knappen for å starte spillet.
 }
