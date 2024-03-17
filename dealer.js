@@ -245,3 +245,15 @@ function restartGame() {
 // Attach the restartGame function to the onclick event of the restart button
 document.getElementById('restartGame').onclick = restartGame;
 
+function startMusic() {
+    var music = document.getElementById("bgMusic"); // Get the audio element
+    var musicImage = document.getElementById("startMusic"); // Get the music image
+
+    if (music.paused) {
+        music.play(); // If music is paused, play it
+        musicImage.src = "Bilder/musicButton.png"; // Change image to indicate music is on
+    } else {
+        music.pause(); // If music is playing, pause it
+        musicImage.src = "Bilder/musicButton.png"; // Change image to indicate music is off
+    }
+}

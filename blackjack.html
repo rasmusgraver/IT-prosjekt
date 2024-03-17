@@ -31,10 +31,17 @@
             <button onclick="startGame()" id="startGame"><img class="zoom" id="startGame" src="Bilder/startButton.png"></button>
         </div>
 
-        <div>
-            <source src="bac"
-        </div>
 
+        <div class="startMusic1">
+            <button onclick="startMusic()" id="startMusic">
+                <img class="zoom" id="startMusic" src="Bilder/musicButton.png" alt="Music Button">
+            </button>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="bgmusic.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
         <div class="restartGame1">
             <button onclick="restartGame()" id="restartGame"><img class="zoom" id="restartGame" src="Bilder/restart.png"></button>
         </div>
@@ -100,6 +107,8 @@
                 <li> <h3>Du vinner ved å få en større hånd enn dealeren</h3> </li>
                 <li> <h3>Alle bildekort og 10 er verdt 10, mens ess kan både være 1 eller 11</h3> </li>
                 <li> <h3>Bildekort/10 + ess blir 21, som er blackjack og gir 3/2 gevinst</h3> </li>
+                <li> <h3>Hver ess har en verdi på 11</h3> </li>
+
                 <!-- <li> <h3>Får du to like kort kan du dele de i to hender (split) </h3> </li> -->
             </ul>
           </div>

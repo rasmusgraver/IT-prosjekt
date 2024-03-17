@@ -39,7 +39,6 @@ body {
 }
 
 
-
 .card {
     height: 220px;
     /* margin-left: -90px; */
@@ -133,6 +132,22 @@ body {
     height: 80px;
 }
 
+.startMusic1 {
+    margin-top:30px;
+    grid-column:3/5;
+    grid-row:1/2;
+    display: flex;
+    justify-content: center;
+}
+
+.startMusic1 button {
+    background-color: transparent;
+    border: none;
+}
+
+#startMusic {
+    height: 80px;
+}
 
 
 .startGame1 {
@@ -247,6 +262,7 @@ body {
 
 .chiplist button {
     background-color: #a52727;
+    border: #873333;
 }
 
 
