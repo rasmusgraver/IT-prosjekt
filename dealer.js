@@ -2,7 +2,6 @@ let deck; // Deklarerer en variabel "deck" som skal inneholde en kortstokk.
 let playerHandValue = 0; // Deklarerer en variabel "playerHandValue" som skal holde verdien av spillerens hånd.
 let dealerHandValue = 0; // Deklarerer en variabel "dealerHandValue" som skal holde verdien av dealerens hånd.
 
-
 // Funksjon for å lage en kortstokk.
 function createDeck() {
     const suits = ['hearts', 'diamonds', 'clubs', 'spades']; // Array som inneholder alle mulige farger.
@@ -45,13 +44,13 @@ function checkPlayerHandValue() {
         document.getElementById('standButton').disabled = true;
         console.log('Bust! Player hand value exceeds 21.'); // Skriver ut en melding om at spilleren har gått over 21.
         const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Bust! Du kom over 21."; // Setter teksten til meldingen.
+        para.innerHTML = "Bust! Du kom over 21"; // Setter teksten til meldingen.
         document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
     } else if (playerHandValue === 21) { // Hvis verdien av spillerens hånd er 21.
         document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
         console.log('Blackjack! Player hand value is 21.'); // Skriver ut en melding om at spilleren har blackjack.
         const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Blackjack! Du fikk 21! "; // Setter teksten til meldingen.
+        para.innerHTML = "Blackjack! Du fikk 21!"; // Setter teksten til meldingen.
         document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
     } else { 
         console.log('Player hand value:', playerHandValue); // Skriver ut verdien av spillerens hånd.
@@ -246,52 +245,3 @@ function restartGame() {
 // Attach the restartGame function to the onclick event of the restart button
 document.getElementById('restartGame').onclick = restartGame;
 
-let balance = 200; // Set initial balance
-let currentBet
-
-// Function to update balance display
-function updateBalance() {
-    document.querySelector('.balance h2').textContent = balance;
-}
-
-// Function to handle chip selection and placing bet
-function placeBet(chipValue) {
-    // Check if the balance is sufficient for the bet
-    if (balance >= chipValue) {
-        // Subtract the bet from the balance
-        balance -= chipValue;
-        // Update balance display
-        updateBalance();
-        // Update bet display
-        const betDisplay = document.querySelector('.balance div:nth-child(2) h2');
-        // Get the current bet value
-        let currentBet = parseInt(betDisplay.textContent) || 0; // Set default value to 0 if betDisplay is not a number
-        // Add the chip value to the current bet
-        currentBet += chipValue;
-        // Update bet display
-        betDisplay.textContent = currentBet;
-    } else {
-        alert("Insufficient balance");
-    }
-}
-
-
-// Event listeners for chip icons
-document.getElementById('chip10').addEventListener('click', function() {
-    placeBet(10);
-});
-
-document.getElementById('chip50').addEventListener('click', function() {
-    placeBet(50);
-});
-
-document.getElementById('chip100').addEventListener('click', function() {
-    placeBet(100);
-});
-
-document.getElementById('chip500').addEventListener('click', function() {
-    placeBet(500);
-});
-
-// Call updateBalance initially
-updateBalance();

@@ -12,3 +12,4 @@ function toggleMenu() {
         rulesList.style.display = 'none';
     }
 }
+
