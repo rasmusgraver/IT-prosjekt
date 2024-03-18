@@ -206,54 +206,54 @@ function startGame() {
     hideButton(); // Skjuler knappen for å starte spillet.
 }
 
-// Function to restart the game
+
 function restartGame() {
-    // Check if hit and stand buttons are disabled
+    
     const hitButtonDisabled = document.getElementById('hitButton').disabled;
     const standButtonDisabled = document.getElementById('standButton').disabled;
 
-    // Restart the game only if hit and stand buttons are disabled
+    
     if (hitButtonDisabled && standButtonDisabled) {
-        // Clear player and dealer hands
+        
         document.querySelector('.player').innerHTML = '';
         document.querySelector('.dealer').innerHTML = '';
 
-        // Reset hand values
+        
         playerHandValue = 0;
         dealerHandValue = 0;
 
-        // Enable start game button
+       
         document.getElementById('startGame').disabled = false;
 
-        // Hide result messages
+        
         document.getElementById("result").innerHTML = "";
 
-        // Enable chip buttons
+        
         document.getElementById('chip10').disabled = false;
         document.getElementById('chip50').disabled = false;
         document.getElementById('chip100').disabled = false;
         document.getElementById('chip500').disabled = false;
 
-        // Show the start game button
+        
         document.getElementById('startGame').style.display = 'inline-block';
     } else {
-        // Display a message or perform any action indicating that restart is not allowed during the game
+        
         console.log("Cannot restart game during an ongoing game.");
     }
 }
 
-// Attach the restartGame function to the onclick event of the restart button
+
 document.getElementById('restartGame').onclick = restartGame;
 
 function startMusic() {
-    var music = document.getElementById("bgMusic"); // Get the audio element
-    var musicImage = document.getElementById("startMusic"); // Get the music image
+    var music = document.getElementById("bgMusic");
+    var musicImage = document.getElementById("startMusic"); 
 
     if (music.paused) {
-        music.play(); // If music is paused, play it
-        musicImage.src = "Bilder/musicButton.png"; // Change image to indicate music is on
+        music.play(); 
+        musicImage.src = "Bilder/musicButton.png"; 
     } else {
-        music.pause(); // If music is playing, pause it
-        musicImage.src = "Bilder/musicButton.png"; // Change image to indicate music is off
+        music.pause();
+        musicImage.src = "Bilder/musicButton.png"; 
     }
 }
