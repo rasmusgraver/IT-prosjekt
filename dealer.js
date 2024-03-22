@@ -2,6 +2,8 @@ let deck; // Deklarerer en variabel "deck" som skal inneholde en kortstokk.
 let playerHandValue = 0; // Deklarerer en variabel "playerHandValue" som skal holde verdien av spillerens hånd.
 let dealerHandValue = 0; // Deklarerer en variabel "dealerHandValue" som skal holde verdien av dealerens hånd.
 
+const resultElm = document.getElementById("result") 
+
 // Funksjon for å lage en kortstokk.
 function createDeck() {
     const suits = ['hearts', 'diamonds', 'clubs', 'spades']; // Array som inneholder alle mulige farger.
@@ -42,28 +44,20 @@ function checkPlayerHandValue() {
     if (playerHandValue > 21) { // Hvis verdien av spillerens hånd er over 21.
         document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
         document.getElementById('standButton').disabled = true;
-        console.log('Bust! Player hand value exceeds 21.'); // Skriver ut en melding om at spilleren har gått over 21.
-        const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Bust! Du kom over 21"; // Setter teksten til meldingen.
-        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+        resultElm.innerHTML = "Bust! Du kom over 21"
     } else if (playerHandValue === 21) { // Hvis verdien av spillerens hånd er 21.
         document.getElementById('hitButton').disabled = true; // Deaktiverer "hit" knappen.
-        console.log('Blackjack! Player hand value is 21.'); // Skriver ut en melding om at spilleren har blackjack.
-        const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Blackjack! Du fikk 21!"; // Setter teksten til meldingen.
-        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+        resultElm.innerHTML = "Blackjack! Du fikk 21!"
     } else { 
-        console.log('Player hand value:', playerHandValue); // Skriver ut verdien av spillerens hånd.
+        // console.log('Player hand value: ' + playerHandValue); // Skriver ut verdien av spillerens hånd.
+        resultElm.innerHTML = "Du har " + playerHandValue
     }
 }
 
 // Funksjon for å sjekke verdien av dealerens hånd.
 function checkDealerHandValue() {
     if (dealerHandValue > 21) { // Hvis verdien av dealerens hånd er over 21.
-        console.log('Dealer Bust! Dealer hand value exceeds 21.'); // Skriver ut en melding om at dealeren har gått over 21.
-        const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Dealer Bust! Dealer kom over 21."; // Setter teksten til meldingen.
-        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+        resultElm.innerHTML = "Dealer Bust! Dealer kom over 21."
     } else { // Hvis dealerens hånd ikke er over 21.
         console.log('Dealer hand value:', dealerHandValue); // Skriver ut verdien av dealerens hånd.
     }
@@ -154,20 +148,11 @@ function checkWinner() {
 
     // Sjekker hvem som vinner.
     if (dealerHandValue > 21 || dealerHandValue < playerHandValue) { // Hvis dealerens håndverdi er over 21 eller mindre enn spillerens håndverdi.
-        console.log('Player wins!'); // Skriver ut at spilleren vinner.
-        const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Du vinner!"; // Setter teksten til meldingen.
-        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+        resultElm.innerHTML = "Du vinner!";
     } else if (dealerHandValue > playerHandValue) { // Hvis dealerens håndverdi er større enn spillerens håndverdi.
-        console.log('Dealer wins!'); // Skriver ut at dealeren vinner.
-        const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Dealer vinner!"; // Setter teksten til meldingen.
-        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+        resultElm.innerHTML = "Dealer vinner!";
     } else { // Hvis det er uavgjort.
-        console.log('It\'s a tie!'); // Skriver ut at det er uavgjort.
-        const para = document.createElement("p"); // Oppretter et nytt <p> element.
-        para.innerHTML = "Uavgjort!"; // Setter teksten til meldingen.
-        document.getElementById("result").appendChild(para); // Legger til meldingen i HTML-dokumentet.
+        resultElm.innerHTML = "Uavgjort!"; // Setter teksten til meldingen.
     }
 }
 
